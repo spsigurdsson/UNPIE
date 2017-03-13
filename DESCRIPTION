@@ -1,11 +1,9 @@
 Package: UNPIE
 Type: Package
-Title: What the Package Does (Title Case)
+Title: UNPIE - Understanding Pensions In Europe
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Emil Ahlmann Østergaard <emil.a.oestergaard@gmail.com>
+Maintainer: Emil Ahlmann Østergaard <emil.a.oestergaard@gmail.com>
+Description: Package for financial calculations for the "Pensions in Europe" An Erasmus+ Project sponsored by the European Union
 Encoding: UTF-8
 LazyData: true
