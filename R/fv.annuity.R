@@ -1,5 +1,5 @@
 fv.annuity <- function(r,n,pmt,pmtPrimo=TRUE) {
-  if(typeof(pmtPrimo)== "logical"){
+  if(typeof(pmtPrimo)!= "logical"){
     print("pmtPrimo must be boolian" )
   }else{
     if(isTRUE(pmtPrimo)){adjustment=0 }else{adjustment=1}
