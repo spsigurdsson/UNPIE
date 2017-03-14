@@ -4,10 +4,13 @@
 \alias{fv}
 \title{Returns the future value of an investment (fv)}
 \usage{
-fv(rate = 0, nper = 1, pv = 0, pmt = 0, pmtUltimo = TRUE)
+fv(rate = 0, inflation = 0, nper = 1, pv = 0, pmt = 0,
+  pmtUltimo = TRUE)
 }
 \arguments{
 \item{rate}{The interest rate per period. Default is zero. Must be entered as decimal}
+
+\item{inflation}{The inflation forcast. Default is zero. Must be entered as decimal}
 
 \item{nper}{The total number of payment periods. Default is one period}
 
@@ -21,7 +24,9 @@ fv(rate = 0, nper = 1, pv = 0, pmt = 0, pmtUltimo = TRUE)
 Returns the future value of an investment (fv)
 }
 \examples{
-fv(rate=0.01,nper=10,pv=1000,pmt=10,pmtUltimo=TRUE)
+fv(rate=0.04,inflation=0.02, nper=10,pv=-1000,pmt=-10,pmtUltimo=TRUE)
+fv(rate=0.04,inflation=0.02,nper=10,pmt=-10,pmtUltimo=TRUE)
+fv(rate=0.04,inflation=0.02,nper=10,pv=-1000)
 }
 \seealso{
 \code{\link{fv.single}}

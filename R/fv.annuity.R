@@ -9,12 +9,15 @@
 #' @examples
 #' fv.annuity(rate=0.01,nper=10,pmt=-10,pmtUltimo=TRUE)
 
-fv.annuity <- function(rate,nper,pmt,pmtUltimo=TRUE) {
+fv.annuity <- function(rate,inflation,nper,pmt,pmtUltimo=TRUE) {
   if(typeof(pmtUltimo)!= "logical"){
     print("pmtUltimo must be boolian" )
   }else{
     if(isTRUE(pmtUltimo)){adjustment=0 }else{adjustment=1}
     fv = (pmt / rate * ((1 + rate)^nper - 1))*(1+rate)^adjustment * (-1)
+    if (inflation!=0){
+      fv = infladj(fv,inflation,nper)
+    }
     return(fv)
   }
 }

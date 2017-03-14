@@ -3,3 +3,4 @@
 export(fv)
 export(fv.annuity)
 export(fv.single)
+export(infladj)

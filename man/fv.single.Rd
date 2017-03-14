@@ -2,9 +2,9 @@
 % Please edit documentation in R/fv.single.R
 \name{fv.single}
 \alias{fv.single}
-\title{Returns the future value of an single investment (fv)}
+\title{Returns the future value of an single payment (fv)}
 \usage{
-fv.single(rate, nper, pv)
+fv.single(rate, inflation, nper, pv)
 }
 \arguments{
 \item{rate}{The interest rate per period. Default is zero. Must be entered as decimal}
@@ -14,10 +14,11 @@ fv.single(rate, nper, pv)
 \item{pv}{The present value of single investment made today. Default is assumed to be zero. Must be entered as a negative number}
 }
 \description{
-Returns the future value of an single investment (fv)
+Returns the future value of an single payment (fv)
 }
 \examples{
-fv(rate=0.01,nper=10,pv=1000)
+fv(rate=0.01,nper=10,pv=-1000)
+fv.single(rate=0.01,nper=10,pv=-1000)
 }
 \seealso{
 \code{\link{fv}}

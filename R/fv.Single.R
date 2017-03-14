@@ -9,6 +9,10 @@
 #' fv(rate=0.01,nper=10,pv=-1000)
 #' fv.single(rate=0.01,nper=10,pv=-1000)
 
-fv.single <- function(rate,nper,pv){
-  return((pv * (1 + rate)^nper)*(-1))
+fv.single <- function(rate,inflation,nper,pv){
+  fv =(pv * (1 + rate)^nper)*(-1) ## non inflation adjusted
+  if (inflation!=0){
+    fv = infladj(-fv,inflation,nper)
+  }
+  return(fv)
 }

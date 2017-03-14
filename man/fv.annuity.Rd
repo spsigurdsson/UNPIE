@@ -2,9 +2,9 @@
 % Please edit documentation in R/fv.annuity.R
 \name{fv.annuity}
 \alias{fv.annuity}
-\title{Returns the future value of an annuity payment (fv)}
+\title{Returns the future value of annuity payments (fv)}
 \usage{
-fv.annuity(rate, nper, pmt, pmtUltimo = TRUE)
+fv.annuity(rate, inflation, nper, pmt, pmtUltimo = TRUE)
 }
 \arguments{
 \item{rate}{The interest rate per period. Default is zero. Must be entered as decimal}
@@ -16,10 +16,10 @@ fv.annuity(rate, nper, pmt, pmtUltimo = TRUE)
 \item{pmtUltimo}{When payments are due. TRUE = end of period, FALSE = beginning of period. Default is TRUE.}
 }
 \description{
-Returns the future value of an annuity payment (fv)
+Returns the future value of annuity payments (fv)
 }
 \examples{
-fv(rate=0.01,nper=10,pmt=10,pmtUltimo=TRUE)
+fv.annuity(rate=0.01,nper=10,pmt=-10,pmtUltimo=TRUE)
 }
 \seealso{
 \code{\link{fv}}
