@@ -1,4 +1,4 @@
-#' Returns the future value of an annuity payment (fv)
+#' Returns the future value of annuity payments (fv)
 #'
 #' @param rate The interest rate per period. Default is zero. Must be entered as decimal
 #' @param nper The total number of payment periods. Default is one period
@@ -7,7 +7,7 @@
 #' @seealso \code{\link{fv}}
 #' @export
 #' @examples
-#' fv(rate=0.01,nper=10,pmt=10,pmtUltimo=TRUE)
+#' fv.annuity(rate=0.01,nper=10,pmt=-10,pmtUltimo=TRUE)
 
 fv.annuity <- function(rate,nper,pmt,pmtUltimo=TRUE) {
   if(typeof(pmtUltimo)!= "logical"){

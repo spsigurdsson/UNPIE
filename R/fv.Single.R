@@ -1,4 +1,4 @@
-#' Returns the future value of an single investment (fv)
+#' Returns the future value of an single payment (fv)
 #'
 #' @param rate The interest rate per period. Default is zero. Must be entered as decimal
 #' @param nper The total number of payment periods. Default is one period
@@ -6,7 +6,8 @@
 #' @seealso \code{\link{fv}}
 #' @export
 #' @examples
-#' fv(rate=0.01,nper=10,pv=1000)
+#' fv(rate=0.01,nper=10,pv=-1000)
+#' fv.single(rate=0.01,nper=10,pv=-1000)
 
 fv.single <- function(rate,nper,pv){
   return((pv * (1 + rate)^nper)*(-1))

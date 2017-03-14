@@ -9,7 +9,9 @@
 #' @seealso \code{\link{fv.annuity}}
 #' @export
 #' @examples
-#' fv(rate=0.01,nper=10,pv=1000,pmt=10,pmtUltimo=TRUE)
+#' fv(rate=0.01,nper=10,pv=-1000,pmt=-10,pmtUltimo=TRUE)
+#' fv(rate=0.01,nper=10,pmt=-10,pmtUltimo=TRUE)
+#' fv(rate=0.01,nper=10,pv=-1000)
 
 fv <- function(rate=0,nper=1,pv=0,pmt=0,pmtUltimo=TRUE){
   if(typeof(pmtUltimo)!= "logical"){
