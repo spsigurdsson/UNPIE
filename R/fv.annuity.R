@@ -1,16 +1,14 @@
-#' Estimate future value of an annuity
+#' Returns the future value of an annuity payment (fv)
 #'
-#' @param r discount rate, or the interest rate at which the amount will be compounded each period
-#' @param n number of periods
-#' @param pmt payment per period
-#' @param type payments occur at the end of each period (type=0); payments occur at the beginning of each period (type=1)
+#' @param rate The interest rate per period. Default is zero. Must be entered as decimal
+#' @param nper The total number of payment periods. Default is one period
+#' @param pmt The payment made each period (annuity). Must be entered as a negative number.
+#' @param pmtUltimo When payments are due. TRUE = end of period, FALSE = beginning of period. Default is TRUE.
 #' @seealso \code{\link{fv}}
 #' @export
 #' @examples
-#' fv.annuity(0.03,12,-1000)
-#'
-#' fv.annuity(r=0.03,n=12,pmt=-1000,type=1)
-#'
+#' fv(rate=0.01,nper=10,pmt=10,pmtUltimo=TRUE)
+
 fv.annuity <- function(rate,nper,pmt,pmtUltimo=TRUE) {
   if(typeof(pmtUltimo)!= "logical"){
     print("pmtUltimo must be boolian" )
