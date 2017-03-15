@@ -4,7 +4,7 @@
 \alias{fv.annuity}
 \title{Returns the future value of annuity payments (fv)}
 \usage{
-fv.annuity(rate, inflation, nper, pmt, pmtUltimo = TRUE)
+fv.annuity(rate, inflation, nper, pmt, pmtinfladj = FALSE, pmtUltimo = TRUE)
 }
 \arguments{
 \item{rate}{The interest rate per period. Default is zero. Must be entered as decimal}
@@ -12,6 +12,8 @@ fv.annuity(rate, inflation, nper, pmt, pmtUltimo = TRUE)
 \item{nper}{The total number of payment periods. Default is one period}
 
 \item{pmt}{The payment made each period (annuity). Must be entered as a negative number.}
+
+\item{pmtinfladj}{Are the payments inflation adjusted? Default value = FALSE.}
 
 \item{pmtUltimo}{When payments are due. TRUE = end of period, FALSE = beginning of period. Default is TRUE.}
 }

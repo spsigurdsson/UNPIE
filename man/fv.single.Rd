@@ -7,11 +7,13 @@
 fv.single(rate, inflation, nper, pv)
 }
 \arguments{
-\item{rate}{The interest rate per period. Default is zero. Must be entered as decimal}
+\item{rate}{The interest rate per period. Default is zero. Must be entered as decimal or ts}
 
-\item{nper}{The total number of payment periods. Default is one period}
+\item{inflation}{The inflation rate per period. Default is zero. Must be entered as decimal or ts}
 
-\item{pv}{The present value of single investment made today. Default is assumed to be zero. Must be entered as a negative number}
+\item{nper}{The total number of payment periods. Default is one period. If rate and inflation are entered as ts nper is ignored.}
+
+\item{pv}{The present value of single payment made today. Default is assumed to be zero. Must be entered as a negative number}
 }
 \description{
 Returns the future value of an single payment (fv)

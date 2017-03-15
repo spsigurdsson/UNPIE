@@ -2,30 +2,32 @@
 % Please edit documentation in R/fv.R
 \name{fv}
 \alias{fv}
-\title{Returns the future value of an investment (fv)}
+\title{Returns the future value of a single payment and annuity payments (fv)}
 \usage{
 fv(rate = 0, inflation = 0, nper = 1, pv = 0, pmt = 0,
-  pmtUltimo = TRUE)
+  pmtinfladj = FALSE, pmtUltimo = TRUE)
 }
 \arguments{
-\item{rate}{The interest rate per period. Default is zero. Must be entered as decimal}
+\item{rate}{The interest rate per period. Default is zero. Must be entered as decimal.}
 
-\item{inflation}{The inflation forcast. Default is zero. Must be entered as decimal}
+\item{inflation}{The inflation forcast. Default is zero. Must be entered as decimal.}
 
-\item{nper}{The total number of payment periods. Default is one period}
+\item{nper}{The total number of payment periods. Default is one period.}
 
-\item{pv}{The present value of single investment made today. Default is assumed to be zero. Must be entered as a negative number}
+\item{pv}{The present value of single investment made today. Default is assumed to be zero. Must be entered as a negative number.}
 
 \item{pmt}{The payment made each period (annuity). Must be entered as a negative number.}
+
+\item{pmtinfladj}{Are the payments inflation adjusted? Default value = FALSE.}
 
 \item{pmtUltimo}{When payments are due. TRUE = end of period, FALSE = beginning of period. Default is TRUE.}
 }
 \description{
-Returns the future value of an investment (fv)
+Returns the future value of a single payment and annuity payments (fv)
 }
 \examples{
-fv(rate=0.04,inflation=0.02, nper=10,pv=-1000,pmt=-10,pmtUltimo=TRUE)
-fv(rate=0.04,inflation=0.02,nper=10,pmt=-10,pmtUltimo=TRUE)
+fv(rate=0.04,inflation=0.02, nper=10,pv=-1000,pmt=-10,pmtinfladj=FALSE, pmtUltimo=TRUE)
+fv(rate=0.04,inflation=0.02,nper=10,pmt=-10,pmtinfladj=TRUE,pmtUltimo=TRUE)
 fv(rate=0.04,inflation=0.02,nper=10,pv=-1000)
 }
 \seealso{
