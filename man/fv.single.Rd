@@ -4,7 +4,7 @@
 \alias{fv.single}
 \title{Returns the future value of an single payment (fv)}
 \usage{
-fv.single(rate, inflation, nper, pv)
+fv.single(rate = 0, inflation = 0, nper = 1, pv = 0)
 }
 \arguments{
 \item{rate}{The interest rate per period. Default is zero. Must be entered as decimal or ts}

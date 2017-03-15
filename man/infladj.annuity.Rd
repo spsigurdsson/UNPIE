@@ -2,19 +2,19 @@
 % Please edit documentation in R/infladj.annuity.R
 \name{infladj.annuity}
 \alias{infladj.annuity}
-\title{Returns the inflation adjusted future value of annuity payments (fv).}
+\title{Returns the inflation adjusted future value of a cashflow with annuity payments.}
 \usage{
-infladj.annuity(fv, rate = 0, inflation = 0, nper)
+infladj.annuity(fv = 1, rate = 0, inflation = 0, nper = 1)
 }
 \arguments{
-\item{fv}{The future value of an single payment (fv). Must be entered as a negative number}
+\item{fv}{The future value of an single payment (fv).}
 
 \item{inflation}{The inflation rate per period. Default is zero. Must be entered as decimal}
 
 \item{nper}{The total number of payment periods. Default is one period}
 }
 \description{
-Returns the inflation adjusted future value of annuity payments (fv).
+Returns the inflation adjusted future value of a cashflow with annuity payments.
 }
 \examples{
 infladj(fv=-1000,inflation=0.02, nper= 25)

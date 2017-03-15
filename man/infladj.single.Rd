@@ -2,9 +2,9 @@
 % Please edit documentation in R/infladj.single.R
 \name{infladj.single}
 \alias{infladj.single}
-\title{Returns the inflation adjusted future value of an single payment (fv).}
+\title{Returns the inflation adjusted future value of an single payment (fv).If fv is given as ts the deflated value of the singele paymetn is given for each year.}
 \usage{
-infladj.single(fv, inflation = 0, nper)
+infladj.single(fv = 1, inflation = 0, nper = 1)
 }
 \arguments{
 \item{fv}{The future value of an single payment (fv).}
@@ -14,7 +14,7 @@ infladj.single(fv, inflation = 0, nper)
 \item{nper}{The total number of payment periods. Default is one period. If inflation is entered as ts nper is ignored.}
 }
 \description{
-Returns the inflation adjusted future value of an single payment (fv).
+Returns the inflation adjusted future value of an single payment (fv).If fv is given as ts the deflated value of the singele paymetn is given for each year.
 }
 \examples{
 infladj.single(fv=-1000,inflation=0.02, nper= 25)

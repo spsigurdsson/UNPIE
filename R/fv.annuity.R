@@ -12,38 +12,41 @@
 
 fv.annuity <- function(rate,inflation,nper,pmt,pmtinfladj=FALSE,pmtUltimo=TRUE) {
   ##Type check
-  if(!(is.ts(inflation) || is.scalar(inflation))) {
-    print("inflation must either be of type scalar or ts." )
-  }else if(!(is.ts(rate) || is.scalar(rate))) {
-    print("rate must either be of type scalar or ts" )
-  }else if(!is.scalar(nper)) {
-    print("nper must be of type scalar" )
-  }else if(!(is.ts(pmt) || is.scalar(pmt))) {
-    print("pmt must either be of type scalar or ts" )
-  }else if(typeof(pmtUltimo)!= "logical"){
-    print("pmtUltimo must be boolian" )
-  }else if(typeof(pmtinfladj)!= "logical"){
-    print("pmtinfladj must be boolian" )
+  if(!(is.ts(inflation) || is.scalar(inflation))) return(stop("inflation must either be of type scalar or ts.", call. = FALSE))
+  if(!(is.ts(rate) || is.scalar(rate))) return(stop("rate must either be of type scalar or ts", call. = FALSE))
+  if(!is.scalar(nper)) return(stop("nper must be of type scalar",call. = FALSE))
+  if(!(is.ts(pmt) || is.scalar(pmt))) return(stop("pmt must either be of type scalar or ts", call. = FALSE))
+  if(typeof(pmtUltimo)!= "logical") return(stop("pmtUltimo must be boolian", call. = FALSE))
+  if(typeof(pmtinfladj)!= "logical") return(stop("pmtinfladj must be boolian", call. = FALSE))
+  if(is.ts(pmt) && is.ts(rate) && start(pmt) != start(rate)) return(stop("pmt and rate ts objects must have same start", call. = FALSE))
+
+  if(isTRUE(pmtUltimo)){
+    adjustment=0
   }else{
-
-    if(isTRUE(pmtUltimo)){
-      adjustment=0
-    }else{adjustment=1
-    }
-
-    if(is.scalar(rate)){
-    rate = ts(rep(rate,nper), frequency = 1, start = c(1,1))
-    }
-    if(is.scalar(pmt)){
-      pmt = ts(rep(pmt,nper), frequency = 1, start = c(1,1))
-    }
-
-    accRate = ts(cumprod(rate+1)-1, frequency = frequency(rate), start = start(rate))
-    fv = -pmt/rate * accRate *(1+rate)^adjustment
-
-    if (any(inflation!=0)){
-      fv = infladj.annuity(fv,rate,inflation,nper)
-    }
-    return(fv)
+    adjustment=1
   }
+
+  #Find start
+  if(is.ts(pmt)){
+    start = start(pmt)
+  }else if(is.ts(rate)) {
+    start = start(rate)
+  }else{
+    start = c(1,1)
+  }
+
+  if(is.scalar(rate)){
+    rate = ts(rep(rate,nper), frequency = 1, start = start)
+  }
+  if(is.scalar(pmt)){
+    pmt = ts(rep(pmt,nper), frequency = 1, start = start)
+  }
+
+  accRate = ts(cumprod(rate+1)-1, frequency = frequency(rate), start = start)
+  fv = -pmt/rate * accRate *(1+rate)^adjustment
+
+  if (any(inflation!=0)){
+    fv = infladj.annuity(fv,rate,inflation,nper)
+  }
+  return(fv)
 }

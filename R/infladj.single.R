@@ -9,19 +9,24 @@
 
 
 
-infladj.single <- function(fv,inflation=0, nper){
+infladj.single <- function(fv=1,inflation=0, nper=1){
   ##Type check
-  if(!(is.ts(inflation) || is.scalar(inflation))) {
-    print("inflation must either be of type scalar or ts." )
-  }else if(!is.scalar(nper)) {
-    print("nper must be of type scalar" )
+  if(!(is.ts(inflation) || is.scalar(inflation))) return(stop("inflation must either be of type scalar or ts.",call. = FALSE))
+  if(!is.scalar(nper)) return(stop("nper must be of type scalar",call. = FALSE))
+  if(is.ts(inflation) && start(fv) != start(inflation)) return(stop("inflation and fv ts objects must have same start",call. = FALSE))
+
+  #Find start
+  if(is.ts(inflation)){
+    start = start(inflation)
+  }else if(is.ts(fv)) {
+    start = start(fv)
   }else{
-
+    start = c(1,1)
+  }
   if(is.scalar(inflation)){
-    inflation = ts(rep(inflation,nper), frequency = 1, start = c(1,1))
+    inflation = ts(rep(inflation,nper), frequency = 1, start)
   }
-  accInflation = ts(cumprod(1+inflation)-1, frequency = frequency(inflation), start = start(inflation))
-
+  accInflation = ts(cumprod(1+inflation)-1, frequency = frequency(inflation), start = start)
   return(fv / (1+accInflation))
-  }
 }
+
