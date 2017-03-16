@@ -19,5 +19,5 @@ infladj.annuity(fv = 1, rate = 0, inflation = 0, nper = 1)
 Returns the inflation adjusted future value of a cashflow with annuity payments.
 }
 \examples{
-infladj(fv=-1000,inflation=0.02, nper= 25)
+infladj.annuity(fv=-1000,rate=.05, inflation=0.02, nper=25)
 }
