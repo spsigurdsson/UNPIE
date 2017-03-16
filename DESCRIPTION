@@ -2,8 +2,8 @@ Package: unpie
 Type: Package
 Title: UNPIE - Understanding Pensions In Europe
 Version: 0.1.0
-Author: Emil Ahlmann Østergaard
-Maintainer: Emil Ahlmann Østergaard <emil.a.oestergaard@gmail.com>
+Author: Emil Ahlmann Ã˜stergaard
+Maintainer: Emil Ahlmann Ã˜stergaard <emil.a.oestergaard@gmail.com>
 Description: Pensions in Europe - An Erasmus+ Project sponsored by the European Union
 License: 3.3.1
 Encoding: UTF-8
