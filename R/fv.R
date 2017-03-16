@@ -12,7 +12,7 @@
 #' @import stats
 #' @export
 #' @examples
-#' fv(rate=0.04,inflation=0.02, nper=10,pv=-1000,pmt=-10,pmtinfladj=FALSE, pmtUltimo=TRUE)
+#' fv(rate=0.04,inflation=0.02, nper=10,pv=-1000,pmt=-10,pmtinfladj=FALSE,pmtUltimo=TRUE)
 #' fv(rate=0.04,inflation=0.02,nper=10,pmt=-10,pmtinfladj=TRUE,pmtUltimo=TRUE)
 #' fv(rate=0.04,inflation=0.02,nper=10,pv=-1000)
 
