@@ -2,6 +2,7 @@
 #'
 #' @param rate The interest rate per period. Default is zero. Must be entered as decimal
 #' @param nper The total number of payment periods. Default is one period
+#' @param inflation The inflation rate per period. Default is zero. Must be entered as decimal
 #' @param pmt The payment made each period (annuity). Must be entered as a negative number.
 #' @param pmtinfladj Are the payments inflation adjusted? Default value = FALSE.
 #' @param pmtUltimo When payments are due. TRUE = end of period, FALSE = beginning of period. Default is TRUE.
@@ -10,7 +11,7 @@
 #' @examples
 #' fv.annuity(rate=0.01,nper=10,pmt=-10,pmtUltimo=TRUE)
 
-fv.annuity <- function(rate,inflation,nper,pmt,pmtinfladj=FALSE,pmtUltimo=TRUE) {
+fv.annuity <- function(rate=0,inflation=0,nper=0,pmt=0,pmtinfladj=FALSE,pmtUltimo=TRUE) {
   ##Type check
   if(!(is.ts(inflation) || is.scalar(inflation))) return(stop("inflation must either be of type scalar or ts.", call. = FALSE))
   if(!(is.ts(rate) || is.scalar(rate))) return(stop("rate must either be of type scalar or ts", call. = FALSE))

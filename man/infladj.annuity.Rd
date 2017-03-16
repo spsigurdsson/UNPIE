@@ -9,6 +9,8 @@ infladj.annuity(fv = 1, rate = 0, inflation = 0, nper = 1)
 \arguments{
 \item{fv}{The future value of an single payment (fv).}
 
+\item{rate}{The interest rate per period. Default is zero. Must be entered as decimal}
+
 \item{inflation}{The inflation rate per period. Default is zero. Must be entered as decimal}
 
 \item{nper}{The total number of payment periods. Default is one period}

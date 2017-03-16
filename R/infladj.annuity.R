@@ -1,6 +1,7 @@
 #' Returns the inflation adjusted future value of a cashflow with annuity payments.
 #'
 #' @param fv The future value of an single payment (fv).
+#' @param rate The interest rate per period. Default is zero. Must be entered as decimal
 #' @param inflation The inflation rate per period. Default is zero. Must be entered as decimal
 #' @param nper The total number of payment periods. Default is one period
 #' @export
