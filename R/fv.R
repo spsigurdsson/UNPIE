@@ -9,6 +9,7 @@
 #' @param pmtUltimo When payments are due. TRUE = end of period, FALSE = beginning of period. Default is TRUE.
 #' @seealso \code{\link{fv.single}}
 #' @seealso \code{\link{fv.annuity}}
+#' @import stats
 #' @export
 #' @examples
 #' fv(rate=0.04,inflation=0.02, nper=10,pv=-1000,pmt=-10,pmtinfladj=FALSE, pmtUltimo=TRUE)
