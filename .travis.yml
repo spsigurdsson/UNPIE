@@ -6,5 +6,6 @@ cache: packages
 r_packages:
   - covr
 after_success:
-  - coveralls
   - Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'library(covr);coveralls()'
+
