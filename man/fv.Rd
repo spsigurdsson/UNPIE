@@ -26,7 +26,7 @@ fv(rate = 0, inflation = 0, nper = 1, pv = 0, pmt = 0,
 Returns the future value of a single payment and annuity payments (fv)
 }
 \examples{
-fv(rate=0.04,inflation=0.02, nper=10,pv=-1000,pmt=-10,pmtinfladj=FALSE, pmtUltimo=TRUE)
+fv(rate=0.04,inflation=0.02, nper=10,pv=-1000,pmt=-10,pmtinfladj=FALSE,pmtUltimo=TRUE)
 fv(rate=0.04,inflation=0.02,nper=10,pmt=-10,pmtinfladj=TRUE,pmtUltimo=TRUE)
 fv(rate=0.04,inflation=0.02,nper=10,pv=-1000)
 }
