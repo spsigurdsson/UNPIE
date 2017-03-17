@@ -23,8 +23,8 @@ on_failure:
   - appveyor PushArtifact failure.zip
 
 on_success:
-  - Rscript -e 'library(covr); codecov()'
-  - Rscript -e 'library(covr); coveralls()'
+  - Rscript -e 'covr::codecov()'
+  - Rscript -e 'covr::coveralls()'
 
 environment:
   global:
