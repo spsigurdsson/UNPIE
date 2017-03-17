@@ -7,10 +7,4 @@ r_packages:
   - covr
 after_success:
   - Rscript -e 'library(covr); codecov()'
-  - Rscript -e 'library(covr);coveralls()'
-  after_success:
-  - |
-    Rscript \
-      --default-packages='datasets,utils,grDevices,graphics,stats,methods' \
-      -e 'covr::codecov(line_exclusions = c("inst/include/testthat/testthat.h", "inst/include/testthat/vendor/catch.h"))'
-
+  - Rscript -e 'library(covr); coveralls()'
