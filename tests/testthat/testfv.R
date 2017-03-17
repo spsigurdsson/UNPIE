@@ -14,7 +14,7 @@ test_that("02 fv test: init test", {
   v = 1000
   r = 0.06
   res = fv(pv=v,nper=35,rate=r)
-  expect_identical(res[10],-v*(1+r))
+  expect_identical(res[1],-v*(1+r))
   expect_identical(res[2],-v*(1+r)^2)
   expect_identical(res[35],-v*(1+r)^35)
   expect_identical(start(res),c(1,1))
