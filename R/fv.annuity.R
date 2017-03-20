@@ -32,6 +32,8 @@ fv.annuity <- function(rate=0,inflation=0,nper=0,pmt=0,pmtinfladj=FALSE,pmtUltim
     start = start(pmt)
   }else if(is.ts(rate)) {
     start = start(rate)
+  }else if(is.ts(inflation)) {
+    start = start(inflation)
   }else{
     start = c(1,1)
   }
@@ -41,6 +43,9 @@ fv.annuity <- function(rate=0,inflation=0,nper=0,pmt=0,pmtinfladj=FALSE,pmtUltim
   }
   if(is.scalar(pmt)){
     pmt = ts(rep(pmt,nper), frequency = 1, start = start)
+  }
+  if(is.scalar(inflation)){
+    inflation = ts(rep(inflation,nper), frequency = 1, start = start)
   }
 
   accRate = ts(cumprod(rate+1)-1, frequency = frequency(rate), start = start)

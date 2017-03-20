@@ -17,11 +17,23 @@ fv.single <- function(rate=0,inflation=0,nper=1,pv=0){
   if(!is.scalar(nper)|| nper<1 ) return(stop("nper must be of type integer larger than zero",call. = FALSE))
   if(!is.scalar(pv)) return(stop("pv must be of type scalar",call. = FALSE))
 
-  if(is.scalar(rate)){
-    rate = ts(rep(rate,nper), frequency = 1, start = c(1,1))
+  #Find start
+  if(is.ts(rate)){
+    start = start(rate)
+  }else if(is.ts(inflation)) {
+    start = start(inflation)
+  }else{
+    start = c(1,1)
   }
 
-  accRate = ts(cumprod(rate+1)-1, frequency = frequency(rate), start = start(rate))
+  if(is.scalar(rate)){
+    rate = ts(rep(rate,nper), frequency = 1, start = start)
+  }
+  if(is.scalar(inflation)){
+    inflation = ts(rep(inflation,nper), frequency = 1, start = start)
+  }
+
+  accRate = ts(cumprod(rate+1)-1, frequency = frequency(rate), start = start)
   fv = -pv*(1+accRate) ## non inflation adjusted
 
   if (any(inflation!=0)){

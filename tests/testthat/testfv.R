@@ -45,3 +45,114 @@ test_that("05 fv & fv.single are aligned when input is pv (scalar), nper(scalar)
   expect_identical(end(res),c(2034, 1))
 })
 
+test_that("06 testing that primo/ultimo does not affect result when there is no payment", {
+  v = -1000
+  r=0.04
+  nper=30
+  infl = 0
+  pmt=0
+  pmtinfladj = FALSE
+  res = fv(r,infl,nper,v,pmt,pmtinfladj,FALSE)-fv(r,infl,nper,v,pmt,pmtinfladj,TRUE)
+  expect_identical(res,ts(rep(0,30),start =1))
+})
+
+test_that("07 testing that primo/ultimo does not affect result when there is no payment but inflation", {
+  v = -1000
+  r=0.04
+  nper=30
+  infl = 0.02
+  pmt=0
+  pmtinfladj = FALSE
+  res = fv(r,infl,nper,v,pmt,pmtinfladj,TRUE)-fv(r,infl,nper,v,pmt,pmtinfladj,FALSE)
+  expect_identical(res,ts(rep(0,30),start =1))
+})
+
+test_that("08 testing ultimo on payment", {
+  v = 0
+  r=0.04
+  nper=35
+  infl = 0
+  pmt=-1000
+  pmtinfladj = FALSE
+  res = fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)
+  expect_equal(res[1],1040)
+  expect_equal(res[10],12486.351407877000)
+  expect_equal(res[35],76598.31384951049)
+
+})
+
+test_that("09 testing primo on payment", {
+  v = 0
+  r=0.04
+  nper=35
+  infl = 0
+  pmt=-1000
+  pmtinfladj = FALSE
+  res = fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = TRUE)
+  expect_equal(res[1],1000)
+  expect_equal(res[10],12006.107122958600)
+  expect_equal(res[35],73652.224855298600)
+
+})
+
+test_that("10 testing resutt with pv and pmt specified and pmt = ultimo ", {
+  v = -10000
+  r=0.04
+  nper=35
+  infl = 0
+  pmt=-1000
+  pmtinfladj = FALSE
+  res = fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = TRUE)
+  expect_equal(res[1],11400.000000000000)
+  expect_equal(res[10],26808.549972142100)
+  expect_equal(res[35],113113.114797418000)
+
+})
+
+test_that("11 testing resutt with pv and pmt specified and pmt = primo ", {
+  v = -10000
+  r=0.04
+  nper=35
+  infl = 0
+  pmt=-1000
+  pmtinfladj = FALSE
+  res = fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)
+  expect_equal(res[1],11440.000000000000)
+  expect_equal(res[10],27288.794257060400)
+  expect_equal(res[35],116059.203791630000)
+})
+
+test_that("12 test that start of a timeseries is set correct with timeseries on pmt but not rate", {
+  v = 0
+  r1=0.02
+  r2=ts(rep(0.02,30),start = 2000)
+  nper=30
+  infl = 0
+  pmt=ts(rep(-1000,30),start =2000)
+  pmtinfladj = FALSE
+  res = fv(r1,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)-fv(r2,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)
+  expect_identical(res,ts(rep(0,30),start =2000))
+})
+
+test_that("13 test that start of a timeseries is set correct with timeseries on inflation but not rate and pmt", {
+  v = 0
+  r1=0.02
+  r2=ts(rep(0.02,30),start = 2000)
+  nper=30
+  infl = ts(rep(0.02,30),start = 2000)
+  pmt=-1000
+  pmtinfladj = FALSE
+  res = fv(r1,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)-fv(r2,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)
+  expect_identical(res,ts(rep(0,30),start =2000))
+})
+
+test_that("14 test that start of a timeseries is set correct with timeseries on inflation but not rate", {
+  v = -1000
+  r=0.02
+  nper=30
+  infl = ts(rep(0.02,30),start = 2000)
+  pmt=0
+  pmtinfladj = FALSE
+  res = fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)-fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)
+  expect_identical(res,ts(rep(0,30),start =2000))
+})

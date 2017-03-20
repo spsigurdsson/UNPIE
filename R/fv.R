@@ -32,5 +32,27 @@ fv <- function(rate=0,inflation=0, nper=1,pv=0,pmt=0,pmtinfladj=FALSE, pmtUltimo
   }else{
     adjustment=1
   }
+
+  #Find start
+  if(is.ts(pmt)){
+    start = start(pmt)
+  }else if(is.ts(rate)) {
+    start = start(rate)
+  }else if(is.ts(inflation)) {
+    start = start(inflation)
+  }else{
+    start = c(1,1)
+  }
+
+  if(is.scalar(rate)){
+    rate = ts(rep(rate,nper), frequency = 1, start = start)
+  }
+  if(is.scalar(pmt)){
+    pmt = ts(rep(pmt,nper), frequency = 1, start = start)
+  }
+  if(is.scalar(inflation)){
+    inflation = ts(rep(inflation,nper), frequency = 1, start = start)
+  }
+
   return(fv.single(rate,inflation,nper,pv)+fv.annuity(rate,inflation,nper,pmt,pmtinfladj,pmtUltimo))
 }
