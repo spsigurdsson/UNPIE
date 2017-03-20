@@ -23,6 +23,16 @@ infladj.single <- function(fv=1,inflation=0, nper=1){
   }else{
     start = c(1,1)
   }
+
+  #Find frequency
+  if(is.ts(inflation)){
+    frequency = frequency(inflation)
+  }else if(is.ts(fv)) {
+    frequency = frequency(fv)
+  }else{
+    frequency = 1
+  }
+
   if(is.scalar(inflation)){
     inflation = ts(rep(inflation,nper), frequency = 1, start)
   }

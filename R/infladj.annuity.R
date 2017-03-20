@@ -28,6 +28,17 @@ infladj.annuity <- function(fv=1,rate=0, inflation=0, nper=1){
     start = c(1,1)
   }
 
+  #Find frequency
+  if(is.ts(inflation)){
+    frequency = frequency(inflation)
+  }else if(is.ts(rate)) {
+    frequency = frequency(rate)
+  }else if(is.ts(fv)) {
+    frequency = frequency(fv)
+  }else{
+    frequency = 1
+  }
+
   if(is.scalar(rate)){
     rate = ts(rep(rate,nper), frequency = 1, start = start)
   }

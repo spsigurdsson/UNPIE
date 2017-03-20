@@ -156,3 +156,25 @@ test_that("14 test that start of a timeseries is set correct with timeseries on 
   res = fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)-fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)
   expect_identical(res,ts(rep(0,30),start =2000))
 })
+
+test_that("15 test that start of a timeseries is set correct with timeseries on inflation but not rate with frequency = monthly", {
+  v = -1000
+  r=rate.convert(0.04,1,12)
+  nper=30*12
+  infl = ts(rep(0.002,30*12),start = 2000, frequency=12)
+  pmt=0
+  pmtinfladj = FALSE
+  res = fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)-fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)
+  expect_identical(res,ts(rep(0,30*12),start =2000,frequency = 12))
+})
+
+test_that("16 test frequency = monthly", {
+  v = -1000
+  r=rate.convert(0.04,1,12)
+  nper=35*12
+  infl = ts(rep(rate.convert(0.02,1,12),35*12),start = 2000, frequency=12)
+  pmt=0
+  pmtinfladj = FALSE
+  res=fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)
+  expect_equal(res[35*12],1973.153461879180)
+})

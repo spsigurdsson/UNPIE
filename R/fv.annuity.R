@@ -38,17 +38,28 @@ fv.annuity <- function(rate=0,inflation=0,nper=0,pmt=0,pmtinfladj=FALSE,pmtUltim
     start = c(1,1)
   }
 
-  if(is.scalar(rate)){
-    rate = ts(rep(rate,nper), frequency = 1, start = start)
-  }
-  if(is.scalar(pmt)){
-    pmt = ts(rep(pmt,nper), frequency = 1, start = start)
-  }
-  if(is.scalar(inflation)){
-    inflation = ts(rep(inflation,nper), frequency = 1, start = start)
+  #Find frequency
+  if(is.ts(pmt)){
+    frequency = frequency(pmt)
+  }else if(is.ts(rate)) {
+    frequency = frequency(rate)
+  }else if(is.ts(inflation)) {
+    frequency = frequency(inflation)
+  }else{
+    frequency = 1
   }
 
-  accRate = ts(cumprod(rate+1)-1, frequency = frequency(rate), start = start)
+  if(is.scalar(rate)){
+    rate = ts(rep(rate,nper), frequency = frequency, start = start)
+  }
+  if(is.scalar(pmt)){
+    pmt = ts(rep(pmt,nper), frequency = frequency, start = start)
+  }
+  if(is.scalar(inflation)){
+    inflation = ts(rep(inflation,nper), frequency = frequency, start = start)
+  }
+
+  accRate = ts(cumprod(rate+1)-1, frequency = frequency, start = start)
   fv = -pmt/rate * accRate *(1+rate)^adjustment
 
   if (any(inflation!=0)){
