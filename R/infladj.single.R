@@ -18,10 +18,13 @@ infladj.single <- function(fv=1,inflation=0, nper=1){
   #Find start
   if(is.ts(inflation)){
     start = start(inflation)
+    end = end(inflation)
   }else if(is.ts(fv)) {
     start = start(fv)
+    end = end(fv)
   }else{
     start = c(1,1)
+    end = c(nper,1)
   }
 
   #Find frequency
@@ -34,9 +37,9 @@ infladj.single <- function(fv=1,inflation=0, nper=1){
   }
 
   if(is.scalar(inflation)){
-    inflation = ts(rep(inflation,nper), frequency = 1, start)
+    inflation = ts(rep(inflation,nper), frequency = 1, start, end = end)
   }
-  accInflation = ts(cumprod(1+inflation)-1, frequency = frequency(inflation), start = start)
+  accInflation = ts(cumprod(1+inflation)-1, frequency = frequency(inflation), start = start, end = end)
   return(fv / (1+accInflation))
 }
 

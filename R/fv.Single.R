@@ -20,10 +20,13 @@ fv.single <- function(rate=0,inflation=0,nper=1,pv=0){
   #Find start
   if(is.ts(rate)){
     start = start(rate)
+    end = end(rate)
   }else if(is.ts(inflation)) {
     start = start(inflation)
+    end = end(inflation)
   }else{
     start = c(1,1)
+    end = c(nper,1)
   }
 
   #Find frequency
@@ -36,13 +39,13 @@ fv.single <- function(rate=0,inflation=0,nper=1,pv=0){
   }
 
   if(is.scalar(rate)){
-    rate = ts(rep(rate,nper), frequency = 1, start = start)
+    rate = ts(rep(rate,nper), frequency = 1, start = start, end = end)
   }
   if(is.scalar(inflation)){
-    inflation = ts(rep(inflation,nper), frequency = 1, start = start)
+    inflation = ts(rep(inflation,nper), frequency = 1, start = start, end = end)
   }
 
-  accRate = ts(cumprod(rate+1)-1, frequency = frequency(rate), start = start)
+  accRate = ts(cumprod(rate+1)-1, frequency = frequency(rate), start = start, end = end)
   fv = -pv*(1+accRate) ## non inflation adjusted
 
   if (any(inflation!=0)){

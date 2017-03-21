@@ -20,12 +20,16 @@ infladj.annuity <- function(fv=1,rate=0, inflation=0, nper=1){
   #Find start
   if(is.ts(inflation)){
     start = start(inflation)
+    end = end(inflation)
   }else if(is.ts(rate)) {
     start = start(rate)
+    end = end(rate)
   }else if(is.ts(fv)) {
     start = start(fv)
+    end = end(fv)
   }else{
     start = c(1,1)
+    end = c(nper,1)
   }
 
   #Find frequency
@@ -40,12 +44,12 @@ infladj.annuity <- function(fv=1,rate=0, inflation=0, nper=1){
   }
 
   if(is.scalar(rate)){
-    rate = ts(rep(rate,nper), frequency = 1, start = start)
+    rate = ts(rep(rate,nper), frequency = 1, start = start, end = end)
   }
   if(is.scalar(inflation)){
-    inflation = ts(rep(inflation,nper), frequency = 1, start = start)
+    inflation = ts(rep(inflation,nper), frequency = 1, start = start, end = end)
   }
-  accRate = ts(cumprod(1+rate)-1, frequency = frequency(rate), start = start)
-  accInflation = ts(cumprod(1+inflation)-1, frequency = frequency(inflation), start = start)
+  accRate = ts(cumprod(1+rate)-1, frequency = frequency(rate), start = start, end = end)
+  accInflation = ts(cumprod(1+inflation)-1, frequency = frequency(inflation), start = start, end = end)
   return(fv * (1 + accInflation)/(1+accRate))
 }

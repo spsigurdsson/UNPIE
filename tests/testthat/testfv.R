@@ -39,7 +39,7 @@ test_that("04 fv & fv.single are aligned when input is pv (scalar), nper(scalar)
 
 test_that("05 fv & fv.single are aligned when input is pv (scalar), nper(scalar) and rate (ts with longer period)", {
   v = -1000
-  r = ts((1:40)/100,start =2000)
+  r = ts((1:35)/100,start =2000)
   res = fv(pv=v,nper=35,rate=r)==fv.single(pv=v,nper=35,rate = r)
   expect_identical(res,ts(rep(TRUE,35),start =2000))
   expect_identical(end(res),c(2034, 1))

@@ -11,7 +11,7 @@
 #' @examples
 #' fv.annuity(rate=0.01,nper=10,pmt=-10,pmtUltimo=TRUE)
 
-fv.annuity <- function(rate=0,inflation=0,nper=0,pmt=0,pmtinfladj=FALSE,pmtUltimo=TRUE) {
+fv.annuity <- function(rate=0,inflation=0,nper=1,pmt=0,pmtinfladj=FALSE,pmtUltimo=TRUE) {
   ##Type check
   if(!(is.ts(inflation) || is.scalar(inflation))) return(stop("inflation must either be of type scalar or ts.", call. = FALSE))
   if(!(is.ts(rate) || is.scalar(rate))) return(stop("rate must either be of type scalar or ts", call. = FALSE))
@@ -30,12 +30,16 @@ fv.annuity <- function(rate=0,inflation=0,nper=0,pmt=0,pmtinfladj=FALSE,pmtUltim
   #Find start
   if(is.ts(pmt)){
     start = start(pmt)
+    end = end(pmt)
   }else if(is.ts(rate)) {
     start = start(rate)
+    end = end(rate)
   }else if(is.ts(inflation)) {
     start = start(inflation)
+    end = end(inflation)
   }else{
     start = c(1,1)
+    end = c(nper,1)
   }
 
   #Find frequency
@@ -50,16 +54,16 @@ fv.annuity <- function(rate=0,inflation=0,nper=0,pmt=0,pmtinfladj=FALSE,pmtUltim
   }
 
   if(is.scalar(rate)){
-    rate = ts(rep(rate,nper), frequency = frequency, start = start)
+    rate = ts(rep(rate,nper), frequency = frequency, start = start, end = end)
   }
   if(is.scalar(pmt)){
-    pmt = ts(rep(pmt,nper), frequency = frequency, start = start)
+    pmt = ts(rep(pmt,nper), frequency = frequency, start = start,end=end)
   }
   if(is.scalar(inflation)){
-    inflation = ts(rep(inflation,nper), frequency = frequency, start = start)
+    inflation = ts(rep(inflation,nper), frequency = frequency, start = start, end = end)
   }
 
-  accRate = ts(cumprod(rate+1)-1, frequency = frequency, start = start)
+  accRate = ts(cumprod(rate+1)-1, frequency = frequency, start = start, end = end)
   fv = -pmt/rate * accRate *(1+rate)^adjustment
 
   if (any(inflation!=0)){

@@ -33,15 +33,19 @@ fv <- function(rate=0,inflation=0, nper=1,pv=0,pmt=0,pmtinfladj=FALSE, pmtUltimo
     adjustment=1
   }
 
-  #Find start
+  #Find start & end
   if(is.ts(pmt)){
     start = start(pmt)
+    end = end(pmt)
   }else if(is.ts(rate)) {
     start = start(rate)
+    end = end(rate)
   }else if(is.ts(inflation)) {
     start = start(inflation)
+    end = end(inflation)
   }else{
     start = c(1,1)
+    end = c(nper,1)
   }
 
   #Find frequency
@@ -56,13 +60,13 @@ fv <- function(rate=0,inflation=0, nper=1,pv=0,pmt=0,pmtinfladj=FALSE, pmtUltimo
   }
 
   if(is.scalar(rate)){
-    rate = ts(rep(rate,nper), frequency = frequency, start = start)
+    rate = ts(rep(rate,nper), frequency = frequency, start = start,end = end)
   }
   if(is.scalar(pmt)){
-    pmt = ts(rep(pmt,nper), frequency = frequency, start = start)
+    pmt = ts(rep(pmt,nper), frequency = frequency, start = start, end = end)
   }
   if(is.scalar(inflation)){
-    inflation = ts(rep(inflation,nper), frequency = frequency, start = start)
+    inflation = ts(rep(inflation,nper), frequency = frequency, start = start, end = end)
   }
 
   return(fv.single(rate,inflation,nper,pv)+fv.annuity(rate,inflation,nper,pmt,pmtinfladj,pmtUltimo))
