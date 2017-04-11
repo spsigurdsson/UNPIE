@@ -1,3 +1,5 @@
+context("fv.annuity: Future value of annuity")
+
 test_that("1 test that start of a timeseries is set correct with timeseries on inflation but not rate and pmt", {
   v = 0
   r1=0.02

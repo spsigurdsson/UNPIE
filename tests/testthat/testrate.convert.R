@@ -1,3 +1,5 @@
+context("rate.convert: convert rates in time")
+
 test_that("1 test rate.converts from annual to monthly, and back againg still give the same result", {
   rate=0.04
   new.rate = rate.convert(rate,frequency.input=1,frequency.output=12)

@@ -1,3 +1,4 @@
+context("fv.single: Future value of single payment")
 test_that("1 test that start of a timeseries is set correct with timeseries on inflation but not rate", {
   v = -1000
   r=0.03

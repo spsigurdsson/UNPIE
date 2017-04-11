@@ -1,3 +1,5 @@
+context("infladj.single: Inflationadjustment of single payment")
+
 test_that("1 test that start of a timeseries is set correct with timeseries on inflation but not rate", {
   fv = ts(rep(-1000,30),start = 2000)
   nper=30
