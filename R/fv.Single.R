@@ -7,7 +7,6 @@
 #' @seealso \code{\link{fv}}
 #' @export
 #' @examples
-#' fv(rate=0.01,nper=10,pv=-1000)
 #' fv.single(rate=0.01,nper=10,pv=-1000)
 
 fv.single <- function(rate=0,inflation=0,nper=1,pv=0){

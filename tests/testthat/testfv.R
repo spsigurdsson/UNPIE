@@ -1,3 +1,6 @@
+library(unpie)
+# devtools:test()
+
 context("fv: Future value")
 
 test_that("01 fv test: init test", {
