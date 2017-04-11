@@ -18,7 +18,7 @@ fv(rate = 0, inflation = 0, nper = 1, pv = 0, pmt = 0,
 
 \item{pmt}{The payment made each period (annuity). Must be entered as a negative number.}
 
-\item{pmtinfladj}{Are the payments inflation adjusted? Default value = FALSE.}
+\item{pmtinfladj}{Should the payments be inflation adjusted? E.g. are the annuity pmt constant or real annuities. Only avaliable for pmt given as scalar. Default value = FALSE.}
 
 \item{pmtUltimo}{When payments are due. TRUE = end of period, FALSE = beginning of period. Default is TRUE.}
 }

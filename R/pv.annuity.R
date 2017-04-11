@@ -1,4 +1,4 @@
-#' Returns the future value of annuity payments (fv)
+#' Returns the presentvalue value of annuity payments (fv)
 #'
 #' @param rate The interest rate per period. Default is zero. Must be entered as decimal
 #' @param nper The total number of payment periods. Default is one period
@@ -11,7 +11,7 @@
 #' @examples
 #' fv.annuity(rate=0.01,nper=10,pmt=-10,pmtUltimo=TRUE)
 
-fv.annuity <- function(rate=0,inflation=0,nper=1,pmt=0,pmtinfladj=FALSE,pmtUltimo=TRUE) {
+pv.annuity <- function(rate=0,inflation=0,nper=1,pmt=0,pmtinfladj=FALSE,pmtUltimo=TRUE) {
   ##Type check
   if(!(is.ts(inflation) || is.scalar(inflation))) return(stop("inflation must either be of type scalar or ts.", call. = FALSE))
   if(!(is.ts(rate) || is.scalar(rate))) return(stop("rate must either be of type scalar or ts", call. = FALSE))
@@ -59,33 +59,15 @@ fv.annuity <- function(rate=0,inflation=0,nper=1,pmt=0,pmtinfladj=FALSE,pmtUltim
   }
 
   if(isTRUE(pmtinfladj)){
-    #pmt = pmt*fv.single(inflation,0,nper,-1/(1+inflation[1]))
-    rate = rate.real(rate,inflation)
-    inflation = ts(rep(0,nper), frequency = frequency, start = start, end = end)
+    pmt = pmt*fv.single(inflation,0,nper,-1/(1+inflation[1]))
   }
 
-  val=c(rep(0,length(pmt)))
-  for(index in 1:length(pmt)){
-    if(isTRUE(pmtUltimo)){
-      if (index==1){
-        val[index] = pmt[index]
-      }else{
-        val[index] = pmt[index]+(1+rate[index])*val[index-1]
-      }
-    }else{
-      if (index==1){
-        val[index] = (1+rate[index])*pmt[index]
-      }else{
-      val[index] = (1+rate[index])*(val[index-1]+pmt[index])
-      }
-    }
-  }
-
-  fv = ts(-val,start = start,frequency = frequency)
+  accRate = ts(cumprod(rate+1)-1, frequency = frequency(rate), start = start, end = end)
+  pv = -pmt/(1+accRate) ## non inflation adjusted
+  pv = ts(cumsum(pv),frequency = frequency, start = start, end = end)
 
   if (any(inflation!=0)){
-    fv = infladj.annuity(fv,rate,inflation,nper)
-  }
-  return(fv)
 
+  }
+  return(pv)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/infladj.annuity.R
 \name{infladj.annuity}
 \alias{infladj.annuity}
-\title{Returns the inflation adjusted future value of a cashflow with annuity payments.}
+\title{Returns the inflation adjusted future value of cashflow with (constant) annuity payments.}
 \usage{
 infladj.annuity(fv = 1, rate = 0, inflation = 0, nper = 1)
 }
@@ -16,7 +16,7 @@ infladj.annuity(fv = 1, rate = 0, inflation = 0, nper = 1)
 \item{nper}{The total number of payment periods. Default is one period}
 }
 \description{
-Returns the inflation adjusted future value of a cashflow with annuity payments.
+Returns the inflation adjusted future value of cashflow with (constant) annuity payments.
 }
 \examples{
 infladj.annuity(fv=-1000,rate=.05, inflation=0.02, nper=25)

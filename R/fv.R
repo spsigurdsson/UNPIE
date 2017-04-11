@@ -5,7 +5,7 @@
 #' @param nper The total number of payment periods. Default is one period.
 #' @param pv The present value of single investment made today. Default is assumed to be zero. Must be entered as a negative number.
 #' @param pmt The payment made each period (annuity). Must be entered as a negative number.
-#' @param pmtinfladj Are the payments inflation adjusted? Default value = FALSE.
+#' @param pmtinfladj Should the payments be inflation adjusted? E.g. are the annuity pmt constant or real annuities. Only avaliable for pmt given as scalar. Default value = FALSE.
 #' @param pmtUltimo When payments are due. TRUE = end of period, FALSE = beginning of period. Default is TRUE.
 #' @seealso \code{\link{fv.single}}
 #' @seealso \code{\link{fv.annuity}}
@@ -27,37 +27,32 @@ fv <- function(rate=0,inflation=0, nper=1,pv=0,pmt=0,pmtinfladj=FALSE, pmtUltimo
   if(nper<1) return(stop("nper must be larger than zero",call. = FALSE))
   if(!is.scalar(pv)) return(stop("pv must be of type scalar",call. = FALSE))
 
+
   if(isTRUE(pmtUltimo)){
     adjustment=0
   }else{
     adjustment=1
   }
 
-  #Find start & end
+  #Find start, end, frequency
   if(is.ts(pmt)){
     start = start(pmt)
     end = end(pmt)
+    frequency = frequency(pmt)
   }else if(is.ts(rate)) {
     start = start(rate)
     end = end(rate)
+    frequency = frequency(rate)
   }else if(is.ts(inflation)) {
     start = start(inflation)
     end = end(inflation)
+    frequency = frequency(inflation)
   }else{
     start = c(1,1)
     end = c(nper,1)
-  }
-
-  #Find frequency
-  if(is.ts(pmt)){
-    frequency = frequency(pmt)
-  }else if(is.ts(rate)) {
-    frequency = frequency(rate)
-  }else if(is.ts(inflation)) {
-    frequency = frequency(inflation)
-  }else{
     frequency = 1
   }
+
 
   if(is.scalar(rate)){
     rate = ts(rep(rate,nper), frequency = frequency, start = start,end = end)

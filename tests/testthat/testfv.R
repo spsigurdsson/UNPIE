@@ -1,6 +1,3 @@
-library(unpie)
-# devtools:test()
-
 context("fv: Future value")
 
 test_that("01 fv test: init test", {
@@ -158,13 +155,13 @@ test_that("14 test that start of a timeseries is set correct with timeseries on 
 })
 
 test_that("15 test that start of a timeseries is set correct with timeseries on inflation but not rate with frequency = monthly", {
-  v = -1000
-  r=rate.convert(0.04,1,12)
+  pv = -1000
+  rate=rate.convert(0.04,1,12)
   nper=30*12
-  infl = ts(rep(0.002,30*12),start = 2000, frequency=12)
+  inflation = ts(rep(0.002,30*12),start = 2000, frequency=12)
   pmt=0
   pmtinfladj = FALSE
-  res = fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)-fv(r,infl,nper,v,pmt,pmtinfladj,pmtUltimo = FALSE)
+  res = fv(rate,inflation,nper,pv,pmt,pmtinfladj,pmtUltimo = FALSE)-fv(rate,inflation,nper,pv,pmt,pmtinfladj,pmtUltimo = FALSE)
   expect_identical(res,ts(rep(0,30*12),start =2000,frequency = 12))
 })
 

@@ -15,24 +15,18 @@ infladj.single <- function(fv=1,inflation=0, nper=1){
   if(!is.scalar(nper)) return(stop("nper must be of type scalar",call. = FALSE))
   if(is.ts(inflation) && start(fv) != start(inflation)) return(stop("inflation and fv ts objects must have same start",call. = FALSE))
 
-  #Find start
+  #Find start, end and frequency
   if(is.ts(inflation)){
     start = start(inflation)
     end = end(inflation)
+    frequency = frequency(inflation)
   }else if(is.ts(fv)) {
     start = start(fv)
     end = end(fv)
+    frequency = frequency(fv)
   }else{
     start = c(1,1)
     end = c(nper,1)
-  }
-
-  #Find frequency
-  if(is.ts(inflation)){
-    frequency = frequency(inflation)
-  }else if(is.ts(fv)) {
-    frequency = frequency(fv)
-  }else{
     frequency = 1
   }
 
@@ -42,4 +36,3 @@ infladj.single <- function(fv=1,inflation=0, nper=1){
   accInflation = ts(cumprod(1+inflation)-1, frequency = frequency(inflation), start = start, end = end)
   return(fv / (1+accInflation))
 }
-
