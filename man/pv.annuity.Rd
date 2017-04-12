@@ -24,7 +24,7 @@ pv.annuity(rate = 0, inflation = 0, nper = 1, pmt = 0,
 Returns the presentvalue value of annuity payments (fv)
 }
 \examples{
-fv.annuity(rate=0.01,nper=10,pmt=-10,pmtUltimo=TRUE)
+pv.annuity(rate=0.01,inflation=0, nper=10,pmt=-10,pmtinfladj=FALSE,pmtUltimo=TRUE)
 }
 \seealso{
 \code{\link{fv}}

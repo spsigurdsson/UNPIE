@@ -9,7 +9,7 @@
 #' @seealso \code{\link{fv}}
 #' @export
 #' @examples
-#' fv.annuity(rate=0.01,nper=10,pmt=-10,pmtUltimo=TRUE)
+#' pv.annuity(rate=0.01,inflation=0, nper=10,pmt=-10,pmtinfladj=FALSE,pmtUltimo=TRUE)
 
 pv.annuity <- function(rate=0,inflation=0,nper=1,pmt=0,pmtinfladj=FALSE,pmtUltimo=TRUE) {
   ##Type check

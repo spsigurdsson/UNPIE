@@ -7,8 +7,8 @@
 #' @seealso \code{\link{fv}}
 #' @export
 #' @examples
-#' pv(rate=0.01,nper=10,fv=-1000)
-#' pv.single(rate=0.01,nper=10,fv=-1000)
+#' pv.single(rate=0.05,inflation=0.03,nper=35,fv=-1000)
+#' pv.single(rate=0.01,inflation=0,nper=10,fv=-1000)
 
 pv.single <- function(rate=0,inflation=0,nper=1,fv=0){
   ##Type check
