@@ -4,7 +4,7 @@
 #' @param inflation inflation.
 #' @export
 #' @examples
-#' rate.real(rate=0.00327374,inflation=0.02)
+#' rate.real(nominalRate=0.00327374,inflation=0.02)
 
 
 rate.real<- function(nominalRate, inflation){

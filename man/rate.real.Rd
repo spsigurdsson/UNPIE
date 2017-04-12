@@ -15,5 +15,5 @@ rate.real(nominalRate, inflation)
 Converts an rate with a given frequency to aneffective rate for another frequence. Base=1 is yearly rate
 }
 \examples{
-rate.real(rate=0.00327374,inflation=0.02)
+rate.real(nominalRate=0.00327374,inflation=0.02)
 }
