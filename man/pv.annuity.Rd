@@ -2,7 +2,7 @@
 % Please edit documentation in R/pv.annuity.R
 \name{pv.annuity}
 \alias{pv.annuity}
-\title{Returns the presentvalue value of annuity payments (fv)}
+\title{Returns the present value value of annuity payments (spending) made in the future (fv)}
 \usage{
 pv.annuity(rate = 0, inflation = 0, nper = 1, pmt = 0,
   pmtinfladj = FALSE, pmtUltimo = TRUE)
@@ -14,18 +14,18 @@ pv.annuity(rate = 0, inflation = 0, nper = 1, pmt = 0,
 
 \item{nper}{The total number of payment periods. Default is one period}
 
-\item{pmt}{The payment made each period (annuity). Must be entered as a negative number.}
+\item{pmt}{The payment (spending) made each period (annuity) in the future. Must be entered as a negative number.}
 
 \item{pmtinfladj}{Should the payments be inflation adjusted? E.g. are the annuity pmt constant or real annuities. Default value = FALSE.}
 
 \item{pmtUltimo}{When payments are due. TRUE = end of period, FALSE = beginning of period. Default is TRUE.}
 }
 \description{
-Returns the presentvalue value of annuity payments (fv)
+Returns the present value value of annuity payments (spending) made in the future (fv)
 }
 \examples{
 pv.annuity(rate=0.01,inflation=0, nper=10,pmt=-10,pmtinfladj=FALSE,pmtUltimo=TRUE)
 }
 \seealso{
-\code{\link{fv}}
+\code{\link{pv}}
 }

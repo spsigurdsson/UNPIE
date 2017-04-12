@@ -2,7 +2,7 @@
 % Please edit documentation in R/pv.single.R
 \name{pv.single}
 \alias{pv.single}
-\title{Returns the future value of an single payment (fv)}
+\title{Returns the present value of an single payment (pv)}
 \usage{
 pv.single(rate = 0, inflation = 0, nper = 1, fv = 0)
 }
@@ -13,15 +13,15 @@ pv.single(rate = 0, inflation = 0, nper = 1, fv = 0)
 
 \item{nper}{The total number of payment periods. Default is one period. If rate and inflation are entered as ts nper is ignored.}
 
-\item{fv}{The present value of single payment made today. Default is assumed to be zero. Must be entered as a negative number}
+\item{fv}{The future value of single payment (spending) made in the future. Default is assumed to be zero. Must be entered as a negative number}
 }
 \description{
-Returns the future value of an single payment (fv)
+Returns the present value of an single payment (pv)
 }
 \examples{
 pv.single(rate=0.05,inflation=0.03,nper=35,fv=-1000)
 pv.single(rate=0.01,inflation=0,nper=10,fv=-1000)
 }
 \seealso{
-\code{\link{fv}}
+\code{\link{pv}}
 }

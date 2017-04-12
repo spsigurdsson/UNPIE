@@ -1,12 +1,12 @@
-#' Returns the presentvalue value of annuity payments (fv)
+#' Returns the present value value of annuity payments (spending) made in the future (fv)
 #'
 #' @param rate The interest rate per period. Default is zero. Must be entered as decimal
 #' @param nper The total number of payment periods. Default is one period
 #' @param inflation The inflation rate per period. Default is zero. Must be entered as decimal
-#' @param pmt The payment made each period (annuity). Must be entered as a negative number.
+#' @param pmt The payment (spending) made each period (annuity) in the future. Must be entered as a negative number.
 #' @param pmtinfladj Should the payments be inflation adjusted? E.g. are the annuity pmt constant or real annuities. Default value = FALSE.
 #' @param pmtUltimo When payments are due. TRUE = end of period, FALSE = beginning of period. Default is TRUE.
-#' @seealso \code{\link{fv}}
+#' @seealso \code{\link{pv}}
 #' @export
 #' @examples
 #' pv.annuity(rate=0.01,inflation=0, nper=10,pmt=-10,pmtinfladj=FALSE,pmtUltimo=TRUE)
