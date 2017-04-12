@@ -66,3 +66,32 @@ test_that("07 PV of real ann. adj. for infl", {
   expect_equal(C,d)
 })
 
+test_that("08 Link savings -> withdrawals", {
+  fv1=fv(rate=0.04,inflation=.02, nper=35,pv=0,pmt=-1000,pmtinfladj=TRUE, pmtUltimo=TRUE)[35]
+  fv2=fv.annuity(rate=0.04,inflation=.02, nper=35,pmt=-1000,pmtinfladj=TRUE, pmtUltimo=TRUE)[35]
+  pmt1=pmt(rate = 0.04, inflation = 0.02, nper = 30, fv= fv1)
+  pmt2=pmt(rate = 0.04, inflation = 0.02, nper = 30, fv= fv2)
+  expect_equal(pmt1[1],2204.08123706578)
+  expect_equal(pmt2[30],2204.08123706578)
+})
+
+test_that("09 Link withdrawals -> savings", {
+  realRate = rate.real(0.04,0.02)
+  pmt=-2204.08123706578
+  pv1=pv(rate=realRate,inflation=0, nper=30,fv=0,pmt=pmt,pmtinfladj=FALSE, pmtUltimo=TRUE)[30]
+  pv2=pv.annuity(rate=realRate,inflation=0, nper=30,pmt=pmt,pmtinfladj=FALSE, pmtUltimo=TRUE)[30]
+  pv1a=pv.single(realRate,0,35,-pv1)
+  pv2a=pv.single(realRate,0,35,-pv2)
+
+  pmt1=pmt(rate = 0.04, inflation = 0.02, nper = 35, fv = pv1a[35])
+  pmt2=pmt(rate = 0.04, inflation = 0.02, nper = 35, fv = pv2a[35])
+
+  expect_equal(pv1,49630.826555838300)
+  expect_equal(pv2,49630.826555838300)
+  expect_equal(pv1a[35],25153.049428082089)
+  expect_equal(pv2a[35],25153.049428082089)
+  expect_equal(pmt1,ts(rep(1000,35)))
+  expect_equal(pmt2,ts(rep(1000,35)))
+})
+
+
