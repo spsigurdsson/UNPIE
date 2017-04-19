@@ -7,7 +7,7 @@
 #' @seealso \code{\link{fv}}
 #' @export
 #' @examples
-#' fv.single(rate=0.01,nper=10,pv=-1000)
+#' fv.single(rate=0.01,nper=20,pv=-1000)
 
 fv.single <- function(rate=0,inflation=0,nper=1,pv=0){
   ##Type check
@@ -29,10 +29,6 @@ fv.single <- function(rate=0,inflation=0,nper=1,pv=0){
     start = c(1,1)
     end = c(nper,1)
     frequency = 1
-  }
-
-  if(is.scalar(inflation)){
-    inflation = ts(rep(inflation,nper), frequency = 1, start = start, end = end)
   }
 
   if(is.scalar(inflation)){

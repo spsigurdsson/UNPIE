@@ -6,7 +6,7 @@
 #' @param nper The total number of payment periods. Default is one period
 #' @export
 #' @examples
-#' infladj.annuity(fv=-1000,rate=.05, inflation=0.02, nper=25)
+#' infladj.annuity(fv=-1000,rate=.06, inflation=0.02, nper=25)
 
 infladj.annuity <- function(fv=1,rate=0, inflation=0, nper=1){
   ##Type check
@@ -24,6 +24,10 @@ infladj.annuity <- function(fv=1,rate=0, inflation=0, nper=1){
     start = start(rate)
     end = end(rate)
     frequency = frequency(rate)
+  }else if(is.ts(fv)) {
+    start = start(fv)
+    end = end(fv)
+    frequency = frequency(fv)
   }else{
     start = c(1,1)
     end = c(nper,1)

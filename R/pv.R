@@ -27,12 +27,12 @@ pv <- function(rate=0,inflation=0, nper=1,fv=0,pmt=0,pmtinfladj=FALSE, pmtUltimo
   if(nper<1) return(stop("nper must be larger than zero",call. = FALSE))
   if(!is.scalar(fv)) return(stop("fv must be of type scalar",call. = FALSE))
 
-
-  if(isTRUE(pmtUltimo)){
+ # Not implemented yet
+ # if(isTRUE(pmtUltimo)){
     adjustment=0
-  }else{
-    adjustment=1
-  }
+ # }else{
+ #   adjustment=1
+ # }
 
   #Find start, end, frequency
   if(is.ts(pmt)){
@@ -52,7 +52,6 @@ pv <- function(rate=0,inflation=0, nper=1,fv=0,pmt=0,pmtinfladj=FALSE, pmtUltimo
     end = c(nper,1)
     frequency = 1
   }
-
 
   if(is.scalar(rate)){
     rate = ts(rep(rate,nper), frequency = frequency, start = start,end = end)

@@ -1,4 +1,4 @@
-#' Returns the present value value of annuity payments (spending) made in the future (fv)
+#' Returns the present value of annuity payments (spending) made in the future (fv)
 #'
 #' @param rate The interest rate per period. Default is zero. Must be entered as decimal
 #' @param nper The total number of payment periods. Default is one period
@@ -27,7 +27,7 @@ pv.annuity <- function(rate=0,inflation=0,nper=1,pmt=0,pmtinfladj=FALSE,pmtUltim
     adjustment=1
   }
 
-  #Find start, end and frequency
+  #Finds start, end and frequency
   if(is.ts(pmt)){
     start = start(pmt)
     end = end(pmt)
