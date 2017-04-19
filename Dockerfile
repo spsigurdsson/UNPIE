@@ -6,8 +6,9 @@ RUN apt-get update -qq && apt-get install -y \
   libssl-dev \
   libcurl4-gnutls-dev
 
-RUN R -e 'install.packages(c("devtools","Rcpp","httpuv","plumber"))'
+RUN R -e 'install.packages(c("devtools","Rcpp","httpuv","shiny"))'
 
+RUN R -e 'devtools::install_github("trestletech/plumber")'
 RUN R -e 'devtools::install_github("eaoestergaard/UNPIE")'
 
 ADD /api/* /api/
