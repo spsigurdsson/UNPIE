@@ -26,3 +26,17 @@ function(rate = 0, inflation = 0, nper = 1, pv = 0){
   )
   
 }
+
+#* @get /fv.annuity
+function(rate = 0, inflation = 0, nper = 1, pmt = 0,
+         pmtinfladj = FALSE, pmtUltimo = TRUE){
+  unpie::fv.annuity(
+    rate = as.numeric(rate),
+    inflation = as.numeric(inflation),
+    nper = as.numeric(nper),
+    pmt = as.numeric(pmt),
+    pmtinfladj = as.logical(pmtinfladj),
+    pmtUltimo = as.logical(pmtUltimo)
+  )
+  
+}
