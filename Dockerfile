@@ -8,5 +8,5 @@ ADD /api/* /api/
 
 EXPOSE 8000
 
-ENTRYPOINT ["R", "-e", "print(commandArgs()); pr <- plumber::plumb(commandArgs()[4]); pr$run(port=8000,swagger=TRUE)"]
+ENTRYPOINT ["R", "-e", "print(commandArgs()); pr <- plumber::plumb(commandArgs()[6]); pr$run(port=8000,swagger=TRUE)"]
 CMD ["/api/api.R"]
